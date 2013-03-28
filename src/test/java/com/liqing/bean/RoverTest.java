@@ -13,71 +13,52 @@ public class RoverTest{
 
     @Test
     public void shouldInitialANewRover() throws Exception {
-        Rover rover = new Rover(3, 4, Rover.NORTH_ASPECT);
-        assertThat(rover.getX(), is(3));
-        assertThat(rover.getY(),is(4));
-        assertThat(rover.getAspect(),is(Rover.NORTH_ASPECT));
-    }
-
-    @Test
-    public void shouldMatchShortName() throws Exception {
-        assertThat(Rover.EAST_ASPECT,is('E'));
-        assertThat(Rover.WEAST_ASPECT,is('W'));
-        assertThat(Rover.NORTH_ASPECT,is('N'));
-        assertThat(Rover.SOUTH_ASPECT,is('S'));
+        Rover rover = new Rover(3, 4, RoverAspect.NORTH);
+        assertThat(rover.display(), is("3 4 N"));
     }
 
     @Test
     public void shouldTurnRight() throws Exception {
-        Rover rover= new Rover(3, 4, Rover.NORTH_ASPECT);
+        Rover rover= new Rover(3, 4, RoverAspect.NORTH);
         rover.turnRight();
-        assertThat(rover.getAspect(),is(Rover.EAST_ASPECT));
+        assertThat(rover.display(),is("3 4 E"));
         rover.turnRight();
-        assertThat(rover.getAspect(),is(Rover.SOUTH_ASPECT));
+        assertThat(rover.display(),is("3 4 S"));
         rover.turnRight();
-        assertThat(rover.getAspect(),is(Rover.WEAST_ASPECT));
+        assertThat(rover.display(),is("3 4 W"));
         rover.turnRight();
-        assertThat(rover.getAspect(),is(Rover.NORTH_ASPECT));
+        assertThat(rover.display(),is("3 4 N"));
     }
 
     @Test
     public void shouldTurnLeft() throws Exception {
-        Rover rover= new Rover(3, 4, Rover.NORTH_ASPECT);
+        Rover rover= new Rover(3, 4, RoverAspect.NORTH);
         rover.turnLeft();
-        assertThat(rover.getAspect(),is(Rover.WEAST_ASPECT));
+        assertThat(rover.display(),is("3 4 W"));
         rover.turnLeft();
-        assertThat(rover.getAspect(),is(Rover.SOUTH_ASPECT));
+        assertThat(rover.display(),is("3 4 S"));
         rover.turnLeft();
-        assertThat(rover.getAspect(),is(Rover.EAST_ASPECT));
+        assertThat(rover.display(),is("3 4 E"));
         rover.turnLeft();
-        assertThat(rover.getAspect(),is(Rover.NORTH_ASPECT));
+        assertThat(rover.display(),is("3 4 N"));
     }
 
     @Test
     public void shouldGoAhead() throws Exception {
-        Rover rover = new Rover(3, 4, Rover.NORTH_ASPECT);
+        Rover rover = new Rover(3, 4, RoverAspect.NORTH);
         rover.goAhead();
-        assertThat(rover.getX(),is(3));
-        assertThat(rover.getY(),is(5));
-        assertThat(rover.getAspect(),is(Rover.NORTH_ASPECT));
+        assertThat(rover.display(),is("3 5 N"));
 
         rover.turnRight();
         rover.goAhead();
-        assertThat(rover.getX(),is(4));
-        assertThat(rover.getY(),is(5));
-        assertThat(rover.getAspect(),is(Rover.EAST_ASPECT));
+        assertThat(rover.display(),is("4 5 E"));
 
         rover.turnRight();
         rover.goAhead();
-        assertThat(rover.getX(),is(4));
-        assertThat(rover.getY(),is(4));
-        assertThat(rover.getAspect(),is(Rover.SOUTH_ASPECT));
+        assertThat(rover.display(),is("4 4 S"));
 
         rover.turnRight();
         rover.goAhead();
-        assertThat(rover.getX(),is(3));
-        assertThat(rover.getY(),is(4));
-        assertThat(rover.getAspect(),is(Rover.WEAST_ASPECT));
-
+        assertThat(rover.display(),is("3 4 W"));
     }
 }

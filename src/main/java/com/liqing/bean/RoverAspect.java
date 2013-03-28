@@ -6,4 +6,15 @@ package com.liqing.bean;
  * Time: 下午10:14.
  */
 public enum RoverAspect {
+    NORTH('N'),SOUTH('S'),EAST('E'),WEAST('W');
+
+    private char aspect;
+    RoverAspect(char aspect){
+        this.aspect = aspect;
+    }
+
+    public String toString(){
+        return String.valueOf(this.aspect);
+    }
+
 }

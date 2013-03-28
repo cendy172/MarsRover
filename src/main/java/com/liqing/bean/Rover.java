@@ -7,81 +7,73 @@ package com.liqing.bean;
  */
 public class Rover {
 
-    public static final char EAST_ASPECT='E';
-    public static final char WEAST_ASPECT='W';
-    public static final char NORTH_ASPECT='N';
-    public static final char SOUTH_ASPECT='S';
+    public static final char EAST_ASPECT = 'E';
+    public static final char WEAST_ASPECT = 'W';
+    public static final char NORTH_ASPECT = 'N';
+    public static final char SOUTH_ASPECT = 'S';
 
     private int x;
     private int y;
-    private char aspect;
+    private RoverAspect aspect;
 
-    public Rover(int x, int y, char aspect) {
+    public Rover(int x, int y, RoverAspect aspect) {
         this.x = x;
         this.y = y;
         this.aspect = aspect;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public char getAspect() {
-        return aspect;
-    }
-
     public void turnRight() {
-        switch (this.getAspect()){
-            case EAST_ASPECT:
-                this.aspect = SOUTH_ASPECT;
+        switch (this.aspect) {
+            case EAST:
+                this.aspect = RoverAspect.SOUTH;
                 break;
-            case SOUTH_ASPECT:
-                this.aspect = WEAST_ASPECT;
+            case SOUTH:
+                this.aspect = RoverAspect.WEAST;
                 break;
-            case WEAST_ASPECT:
-                this.aspect = NORTH_ASPECT;
+            case WEAST:
+                this.aspect = RoverAspect.NORTH;
                 break;
-            case NORTH_ASPECT:
-                this.aspect = EAST_ASPECT;
+            case NORTH:
+                this.aspect = RoverAspect.EAST;
                 break;
         }
     }
 
     public void turnLeft() {
-        switch (this.getAspect()){
-            case EAST_ASPECT:
-                this.aspect = NORTH_ASPECT;
+        switch (this.aspect) {
+            case EAST:
+                this.aspect = RoverAspect.NORTH;
                 break;
-            case SOUTH_ASPECT:
-                this.aspect = EAST_ASPECT;
+            case SOUTH:
+                this.aspect = RoverAspect.EAST;
                 break;
-            case WEAST_ASPECT:
-                this.aspect = SOUTH_ASPECT;
+            case WEAST:
+                this.aspect = RoverAspect.SOUTH;
                 break;
-            case NORTH_ASPECT:
-                this.aspect = WEAST_ASPECT;
+            case NORTH:
+                this.aspect = RoverAspect.WEAST;
                 break;
         }
     }
 
     public void goAhead() {
-        switch (this.getAspect()){
-            case EAST_ASPECT:
+        switch (this.aspect) {
+            case EAST:
                 this.x += 1;
                 break;
-            case WEAST_ASPECT:
+            case WEAST:
                 this.x -= 1;
                 break;
-            case SOUTH_ASPECT:
+            case SOUTH:
                 this.y -= 1;
                 break;
-            case NORTH_ASPECT:
+            case NORTH:
                 this.y += 1;
                 break;
         }
+    }
+
+    public String display() {
+        return new StringBuffer().append(this.x).append(" ").append(this.y).append(" ").append(this.aspect.toString()).toString();
     }
 }
