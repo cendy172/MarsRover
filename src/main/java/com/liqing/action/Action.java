@@ -1,4 +1,4 @@
-package com.liqing.com.liqing.action;
+package com.liqing.action;
 
 /**
  * User: Li Qing

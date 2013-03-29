@@ -1,10 +1,11 @@
-package com.liqing.com.liqing.main;
+package com.liqing.main;
 
+import com.liqing.action.Action;
+import com.liqing.action.GoAheadAction;
+import com.liqing.action.TurnLeftAction;
+import com.liqing.action.TurnRightAction;
 import com.liqing.bean.Rover;
-import com.liqing.com.liqing.action.Action;
-import com.liqing.com.liqing.action.GoAheadAction;
-import com.liqing.com.liqing.action.TurnLeftAction;
-import com.liqing.com.liqing.action.TurnRightAction;
+import com.liqing.main.Command;
 
 /**
  * User: Li Qing
@@ -26,17 +27,17 @@ public class CommandReceiver {
         for(char command : commands){
             switch(command){
                 //TODO remain some problem not resolve
-//                case Command.L.getValue():
-//                    currentAction = leftAction;
-//                    break;
-//                case Command.R.getValue():
-//                    currentAction = rightAction;
-//                    break;
-//                case Command.M.getValue():
-//                    currentAction = goAheadAction;
-//                    break;
-//                default:
-//                    break;
+                case Command.L:
+                    currentAction = leftAction;
+                    break;
+                case Command.R:
+                    currentAction = rightAction;
+                    break;
+                case Command.M:
+                    currentAction = goAheadAction;
+                    break;
+                default:
+                    break;
             }
             currentAction.excute();
         }
