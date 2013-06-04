@@ -14,9 +14,9 @@ public class RoverAspectTest {
 
     @Test
     public void shouldMatchEnumAndValue() throws Exception {
-            assertThat(RoverAspect.EAST.toString(),is("E"));
-            assertThat(RoverAspect.WEAST.toString(),is("W"));
-            assertThat(RoverAspect.NORTH.toString(),is("N"));
-            assertThat(RoverAspect.SOUTH.toString(),is("S"));
+        assertThat(RoverAspect.EAST.toString(), is("E"));
+        assertThat(RoverAspect.WEAST.toString(), is("W"));
+        assertThat(RoverAspect.NORTH.toString(), is("N"));
+        assertThat(RoverAspect.SOUTH.toString(), is("S"));
     }
 }

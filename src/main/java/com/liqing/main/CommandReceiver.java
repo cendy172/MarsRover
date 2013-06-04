@@ -14,7 +14,7 @@ import com.liqing.main.Command;
  */
 public class CommandReceiver {
 
-    private Action currentAction,leftAction,rightAction,goAheadAction;
+    private Action currentAction, leftAction, rightAction, goAheadAction;
 
     public CommandReceiver(Rover rover) {
         leftAction = new TurnLeftAction(rover);
@@ -22,10 +22,10 @@ public class CommandReceiver {
         goAheadAction = new GoAheadAction(rover);
     }
 
-    public void handleCommand(String commandString){
+    public void handleCommand(String commandString) {
         char[] commands = commandString.toCharArray();
-        for(char command : commands){
-            switch(command){
+        for (char command : commands) {
+            switch (command) {
                 //TODO remain some problem not resolve
                 case Command.L:
                     currentAction = leftAction;

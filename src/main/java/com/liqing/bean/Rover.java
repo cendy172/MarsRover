@@ -12,13 +12,11 @@ public class Rover {
     public static final char NORTH_ASPECT = 'N';
     public static final char SOUTH_ASPECT = 'S';
 
-    private int x;
-    private int y;
+    private Coordinate coordinate;
     private RoverAspect aspect;
 
-    public Rover(int x, int y, RoverAspect aspect) {
-        this.x = x;
-        this.y = y;
+    public Rover(Coordinate coordinate, RoverAspect aspect) {
+        this.coordinate = coordinate;
         this.aspect = aspect;
     }
 
@@ -59,21 +57,21 @@ public class Rover {
     public void goAhead() {
         switch (this.aspect) {
             case EAST:
-                this.x += 1;
+                this.coordinate.increaseX();
                 break;
             case WEAST:
-                this.x -= 1;
+                this.coordinate.decreaseX();
                 break;
             case SOUTH:
-                this.y -= 1;
+                this.coordinate.decreaseY();
                 break;
             case NORTH:
-                this.y += 1;
+                this.coordinate.increaseY();
                 break;
         }
     }
 
     public String display() {
-        return new StringBuffer().append(this.x).append(" ").append(this.y).append(" ").append(this.aspect.toString()).toString();
+        return new StringBuffer().append(this.coordinate.getX()).append(" ").append(this.coordinate.getY()).append(" ").append(this.aspect.toString()).toString();
     }
 }

@@ -9,12 +9,13 @@ import com.liqing.bean.Rover;
  */
 public class TurnLeftAction extends Action {
     private Rover rover;
+
     public TurnLeftAction(Rover rover) {
         this.rover = rover;
     }
 
     @Override
     public void excute() {
-         this.rover.turnLeft();
+        this.rover.turnLeft();
     }
 }

@@ -14,4 +14,11 @@ public class Map {
     }
 
 
+    public Boolean isOutOfMap(Rover rover) {
+        return this.isOutOf(rover);
+    }
+
+    private boolean isOutOf(Rover rover) {
+        return true;
+    }
 }
