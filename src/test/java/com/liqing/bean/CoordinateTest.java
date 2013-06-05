@@ -30,7 +30,7 @@ public class CoordinateTest {
     @Test
     public void shouldDecreaseX() throws Exception {
         coordinate.decreaseX();
-        assertThat(coordinate.getX(), is(3));
+        assertThat(coordinate.getX(), is(2));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class CoordinateTest {
     @Test
     public void shouldDecreaseY() throws Exception {
         coordinate.decreaseY();
-        assertThat(coordinate.getY(), is(4));
+        assertThat(coordinate.getY(), is(3));
     }
 }

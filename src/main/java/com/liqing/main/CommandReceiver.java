@@ -26,7 +26,6 @@ public class CommandReceiver {
         char[] commands = commandString.toCharArray();
         for (char command : commands) {
             switch (command) {
-                //TODO remain some problem not resolve
                 case Command.L:
                     currentAction = leftAction;
                     break;

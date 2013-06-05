@@ -20,6 +20,10 @@ public class Rover {
         this.aspect = aspect;
     }
 
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
     public void turnRight() {
         switch (this.aspect) {
             case EAST:
