@@ -7,21 +7,33 @@ package com.liqing.bean;
  */
 public class Rover {
 
-    public static final char EAST_ASPECT = 'E';
-    public static final char WEAST_ASPECT = 'W';
-    public static final char NORTH_ASPECT = 'N';
-    public static final char SOUTH_ASPECT = 'S';
 
     private Coordinate coordinate;
     private RoverAspect aspect;
 
+    private boolean alive;
+
+
     public Rover(Coordinate coordinate, RoverAspect aspect) {
         this.coordinate = coordinate;
         this.aspect = aspect;
+        this.alive = true;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     public Coordinate getCoordinate() {
         return coordinate;
+    }
+
+    public void die() {
+        this.alive = false;
     }
 
     public void turnRight() {
@@ -78,4 +90,5 @@ public class Rover {
     public String display() {
         return new StringBuffer().append(this.coordinate.getX()).append(" ").append(this.coordinate.getY()).append(" ").append(this.aspect.toString()).toString();
     }
+
 }

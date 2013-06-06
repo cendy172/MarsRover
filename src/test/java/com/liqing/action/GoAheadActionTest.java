@@ -1,6 +1,7 @@
 package com.liqing.action;
 
 import com.liqing.bean.Coordinate;
+import com.liqing.bean.Map;
 import com.liqing.bean.Rover;
 import com.liqing.bean.RoverAspect;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 
 /**
  * User: Li Qing
@@ -17,16 +19,53 @@ import static org.junit.Assert.assertThat;
 public class GoAheadActionTest {
 
     private Rover rover;
+    private Action command;
+    private Map map;
+    private Coordinate coordinate;
 
     @Before
     public void setUp() throws Exception {
-        rover = new Rover(new Coordinate(3, 4), RoverAspect.NORTH);
+        map = mock(Map.class);
+        rover = mock(Rover.class);
+        coordinate = mock(Coordinate.class);
+        command = new GoAheadAction(map, rover);
     }
 
     @Test
-    public void shouldGoAheadWithAspect() throws Exception {
-        Action command = new GoAheadAction(rover);
-        command.excute();
-        assertThat(rover.display(), is("3 5 N"));
+    public void shouldGoAheadWithAspectWhenAlive() throws Exception {
+        command.execute();
+        successfullyInvoke(0, 0, 1);
+    }
+
+    private void successfullyInvoke(int turnLeftTimes, int turnRightTimes, int goAheadTimes) {
+        verify(rover, times(turnLeftTimes)).turnLeft();
+        verify(rover, times(turnRightTimes)).turnRight();
+        verify(rover, times(goAheadTimes)).goAhead();
+    }
+
+    @Test
+    public void shouldNotGoAheadWhenMeetBeacon() throws Exception {
+        doReturn(coordinate).when(rover).getCoordinate();
+        doReturn(true).when(map).hasBeacon(coordinate);
+        command.execute();
+        successfullyInvoke(0, 0, 1);
+        verify(rover).setCoordinate(coordinate);
+    }
+
+    @Test
+    public void shouldStayWhenMeetBeacon() throws Exception {
+        map = new Map(3, 4);
+        rover = new Rover(new Coordinate(3, 4), RoverAspect.EAST);
+        assertThat(rover.display(), is("3 4 E"));
+    }
+
+    @Test
+    public void shouldBeABeaconWhenOutOfMap() throws Exception {
+        doReturn(coordinate).when(rover).getCoordinate();
+        doReturn(true).when(map).isOutOfMap(coordinate);
+        doReturn(false).when(map).hasBeacon(coordinate);
+        command.execute();
+        verify(rover).die();
+        assertThat(rover.isAlive(), is(false));
     }
 }

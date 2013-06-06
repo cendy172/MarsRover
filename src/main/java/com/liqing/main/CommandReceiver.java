@@ -4,8 +4,8 @@ import com.liqing.action.Action;
 import com.liqing.action.GoAheadAction;
 import com.liqing.action.TurnLeftAction;
 import com.liqing.action.TurnRightAction;
+import com.liqing.bean.Map;
 import com.liqing.bean.Rover;
-import com.liqing.main.Command;
 
 /**
  * User: Li Qing
@@ -15,11 +15,13 @@ import com.liqing.main.Command;
 public class CommandReceiver {
 
     private Action currentAction, leftAction, rightAction, goAheadAction;
+    private Rover rover;
 
-    public CommandReceiver(Rover rover) {
+    public CommandReceiver(Map map, Rover rover) {
+        this.rover = rover;
         leftAction = new TurnLeftAction(rover);
         rightAction = new TurnRightAction(rover);
-        goAheadAction = new GoAheadAction(rover);
+        goAheadAction = new GoAheadAction(map, rover);
     }
 
     public void handleCommand(String commandString) {
@@ -38,7 +40,9 @@ public class CommandReceiver {
                 default:
                     break;
             }
-            currentAction.excute();
+            if (rover.isAlive()) {
+                currentAction.execute();
+            }
         }
 
     }

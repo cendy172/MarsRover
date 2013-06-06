@@ -26,7 +26,8 @@ public class TurnLeftActionTest {
     @Test
     public void shouldTurnLeftWithAspect() throws Exception {
         Action command = new TurnLeftAction(rover);
-        command.excute();
+        command.execute();
         assertThat(rover.display(), is("3 4 W"));
     }
+
 }

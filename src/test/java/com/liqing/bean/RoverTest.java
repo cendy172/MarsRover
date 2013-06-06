@@ -66,4 +66,11 @@ public class RoverTest {
         rover.goAhead();
         assertThat(rover.display(), is("3 4 W"));
     }
+
+    @Test
+    public void shouldBeABeacon() throws Exception {
+        assertThat(rover.isAlive(), is(true));
+        rover.die();
+        assertThat(rover.isAlive(), is(false));
+    }
 }

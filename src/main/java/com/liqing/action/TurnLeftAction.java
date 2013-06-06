@@ -15,7 +15,7 @@ public class TurnLeftAction extends Action {
     }
 
     @Override
-    public void excute() {
+    public void execute() {
         this.rover.turnLeft();
     }
 }

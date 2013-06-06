@@ -6,5 +6,5 @@ package com.liqing.action;
  * Time: 下午10:35.
  */
 public abstract class Action {
-    public abstract void excute();
+    public abstract void execute();
 }
