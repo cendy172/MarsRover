@@ -12,20 +12,22 @@ import com.liqing.bean.Rover;
 public class GoAheadAction extends Action {
     private Map map;
     private Rover rover;
+    private Coordinate currentCoordinate;
 
     public GoAheadAction(Map map, Rover rover) {
         this.map = map;
         this.rover = rover;
+        currentCoordinate = this.rover.getCoordinate();
     }
 
     @Override
     public void execute() {
-        Coordinate coordinate = rover.getCoordinate();
+        Coordinate preCoordinate = new Coordinate(this.currentCoordinate.getX(), this.currentCoordinate.getY());
         rover.goAhead();
-        if (map.hasBeacon(rover.getCoordinate())) {
-            this.rover.setCoordinate(coordinate);
+        if (map.hasBeacon(currentCoordinate)) {
+            this.rover.setCoordinate(preCoordinate);
         }
-        if (map.isOutOfMap(rover.getCoordinate())) {
+        if (map.isOutOfMap(currentCoordinate)) {
             this.rover.die();
         }
     }

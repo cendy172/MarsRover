@@ -20,7 +20,22 @@
             <artifactId>mockito-core</artifactId>
             <version>1.9.5</version>
         </dependency>
+
     </dependencies>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.10</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <enableRulesSummary>false</enableRulesSummary>
+                    <failsOnError>true</failsOnError>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

@@ -32,6 +32,10 @@ public class Map {
     }
 
     public Boolean hasBeacon(Coordinate coordinate) {
-        return beacons.contains(coordinate) ? true : false;
+        for(Coordinate coordinate1 : beacons){
+            if(coordinate1.getX() == coordinate.getX() && coordinate1.getY() == coordinate.getY())
+                return true;
+        }
+        return false;
     }
 }

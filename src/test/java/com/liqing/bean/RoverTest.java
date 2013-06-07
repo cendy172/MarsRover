@@ -68,9 +68,10 @@ public class RoverTest {
     }
 
     @Test
-    public void shouldBeABeacon() throws Exception {
+    public void shouldBeABeacon() {
         assertThat(rover.isAlive(), is(true));
         rover.die();
         assertThat(rover.isAlive(), is(false));
     }
+
 }

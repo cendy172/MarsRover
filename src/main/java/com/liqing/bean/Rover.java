@@ -7,7 +7,6 @@ package com.liqing.bean;
  */
 public class Rover {
 
-
     private Coordinate coordinate;
     private RoverAspect aspect;
 

@@ -28,6 +28,7 @@ public class GoAheadActionTest {
         map = mock(Map.class);
         rover = mock(Rover.class);
         coordinate = mock(Coordinate.class);
+        doReturn(coordinate).when(rover).getCoordinate();
         command = new GoAheadAction(map, rover);
     }
 
@@ -49,13 +50,15 @@ public class GoAheadActionTest {
         doReturn(true).when(map).hasBeacon(coordinate);
         command.execute();
         successfullyInvoke(0, 0, 1);
-        verify(rover).setCoordinate(coordinate);
     }
 
     @Test
     public void shouldStayWhenMeetBeacon() throws Exception {
         map = new Map(3, 4);
         rover = new Rover(new Coordinate(3, 4), RoverAspect.EAST);
+        map.isOutOfMap(new Coordinate(4, 4));
+        command = new GoAheadAction(map, rover);
+        command.execute();
         assertThat(rover.display(), is("3 4 E"));
     }
 
